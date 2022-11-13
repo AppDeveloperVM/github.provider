@@ -31,4 +31,29 @@ export class GithubAPIService {
     return this.http.get<Repo[]>(url);
   }
 
+  getMostStargazedRepos() : Observable<any>{
+    const url = `https://api.github.com/search/repositories?q=stars:%3E1&sort=stars`;
+    return this.http.get<any>(url);
+  }
+
+  getMostFollowedUsers() : Observable<any>{
+    const url = `https://api.github.com/search/users?q=followers:%3E1&sort=followers`;
+    return this.http.get<any>(url);
+  }
+
+  getUsersWithGreatestRepoCount() : Observable<any>{
+    const url = `https://api.github.com/search/users?q=repos:%3E1&sort=repos`;
+    return this.http.get<any>(url);
+  }
+
+  getRepos(username : string){
+    const url = `https://api.github.com/users/${username}/repos`;
+    return this.http.get<any>(url);
+  }
+
+  getFollowers(username : string){
+    const url = `https://api.github.com/users/${username}/followers`;
+    return this.http.get<any>(url);
+  }
+
 }
